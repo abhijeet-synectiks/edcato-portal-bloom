@@ -4,6 +4,10 @@ import { ThemeProvider } from 'next-themes';
 import Header from '@/components/Header';
 import HeroSection from '@/components/HeroSection';
 import FeaturesSection from '@/components/FeaturesSection';
+import AboutSection from '@/components/AboutSection';
+import PricingSection from '@/components/PricingSection';
+import ContactSection from '@/components/ContactSection';
+import Footer from '@/components/Footer';
 import AuthModal from '@/components/AuthModal';
 
 const Index = () => {
@@ -29,10 +33,16 @@ const Index = () => {
 
   return (
     <ThemeProvider attribute="class" defaultTheme="light" enableSystem>
-      <div className="min-h-screen">
+      <div className="min-h-screen overflow-x-hidden">
         <Header onAuthAction={handleAuthAction} />
-        <HeroSection onAuthAction={handleAuthAction} />
-        <FeaturesSection />
+        <main>
+          <HeroSection onAuthAction={handleAuthAction} />
+          <FeaturesSection />
+          <AboutSection />
+          <PricingSection onAuthAction={handleAuthAction} />
+          <ContactSection />
+        </main>
+        <Footer />
         
         <AuthModal
           isOpen={authModal.isOpen}

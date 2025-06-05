@@ -90,6 +90,11 @@
     @apply border-border;
   }
   
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 80px;
+  }
+  
   body {
     @apply bg-background text-foreground font-poppins;
   }
@@ -97,14 +102,30 @@
 
 @layer components {
   .gradient-bg {
-    background: linear-gradient(135deg, #faf7ff 0%, #f3edff 50%, #e9ddff 100%);
+    background: linear-gradient(135deg, #faf7ff 0%, #f3edff 30%, #e9ddff 60%, #ddd6fe 100%);
   }
   
   .dark .gradient-bg {
-    background: linear-gradient(135deg, #1a1625 0%, #2d1b4e 50%, #3d2863 100%);
+    background: linear-gradient(135deg, #1a1625 0%, #2d1b4e 30%, #3d2863 60%, #4c1d95 100%);
   }
   
   .glass-effect {
-    @apply backdrop-blur-sm bg-white/80 dark:bg-gray-900/80 border border-white/20 dark:border-gray-700/30;
+    @apply backdrop-blur-xl bg-white/80 dark:bg-gray-900/80 border border-white/20 dark:border-gray-700/30;
+  }
+  
+  .apple-card {
+    @apply bg-white/60 dark:bg-gray-800/60 backdrop-blur-xl rounded-3xl border border-white/20 dark:border-gray-700/30 shadow-lg hover:shadow-xl transition-all duration-700 ease-in-out;
+  }
+  
+  .apple-button {
+    @apply transition-all duration-300 ease-in-out transform hover:scale-[1.02] active:scale-[0.98];
+  }
+  
+  .smooth-scale {
+    @apply transition-transform duration-500 ease-out hover:scale-105;
+  }
+  
+  .synectiks-badge {
+    @apply inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-gradient-to-r from-purple-100 to-purple-200 dark:from-purple-900/30 dark:to-purple-800/30 text-purple-700 dark:text-purple-300 border border-purple-200 dark:border-purple-700;
   }
 }
