@@ -1,13 +1,47 @@
-// Update this page (the content is just a fallback if you fail to update the page)
+
+import { useState } from 'react';
+import { ThemeProvider } from 'next-themes';
+import Header from '@/components/Header';
+import HeroSection from '@/components/HeroSection';
+import FeaturesSection from '@/components/FeaturesSection';
+import AuthModal from '@/components/AuthModal';
 
 const Index = () => {
+  const [authModal, setAuthModal] = useState<{ isOpen: boolean; mode: 'signin' | 'signup' }>({
+    isOpen: false,
+    mode: 'signin'
+  });
+
+  const handleAuthAction = (action: 'signin' | 'signup') => {
+    setAuthModal({ isOpen: true, mode: action });
+  };
+
+  const closeAuthModal = () => {
+    setAuthModal({ isOpen: false, mode: 'signin' });
+  };
+
+  const switchAuthMode = () => {
+    setAuthModal(prev => ({ 
+      ...prev, 
+      mode: prev.mode === 'signin' ? 'signup' : 'signin' 
+    }));
+  };
+
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-100">
-      <div className="text-center">
-        <h1 className="text-4xl font-bold mb-4">Welcome to Your Blank App</h1>
-        <p className="text-xl text-gray-600">Start building your amazing project here!</p>
+    <ThemeProvider attribute="class" defaultTheme="light" enableSystem>
+      <div className="min-h-screen">
+        <Header onAuthAction={handleAuthAction} />
+        <HeroSection onAuthAction={handleAuthAction} />
+        <FeaturesSection />
+        
+        <AuthModal
+          isOpen={authModal.isOpen}
+          onClose={closeAuthModal}
+          mode={authModal.mode}
+          onSwitchMode={switchAuthMode}
+        />
       </div>
-    </div>
+    </ThemeProvider>
   );
 };
 
